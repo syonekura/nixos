@@ -1,11 +1,15 @@
 # Builds a VM
 build:
-    nix-build '<nixpkgs/nixos>' -A vm -I nixpkgs=channel:nixos-23.11 -I nixos-config=./configuration.nix
+    nix --experimental-features 'nix-command flakes' build .#nixosConfigurations.tilapio.config.system.build.vm
 
 # executes the VM
 run: build clean
-    QEMU_KERNEL_PARAMS=console=ttyS0 ./result/bin/run-nixos-vm; reset;
+    QEMU_KERNEL_PARAMS=console=ttyS0 ./result/bin/run-tilapio-vm;
 
 # Cleans the VM
 clean:
     rm -f nixos.qcow2
+
+# Initializes nix repl
+repl:
+    nix repl --experimental-features 'nix-command flakes'
