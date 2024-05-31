@@ -40,10 +40,7 @@ in {
     environment.systemPackages = with pkgs; [
       cowsay
       fortune
-      fish
     ];
-
-    programs.fish.enable = true;
 
     users.users.${cfg.name} = {
       isNormalUser = true;
