@@ -6,4 +6,5 @@
     };
   };
   config.programs.home-manager.enable = true;
+  config.programs.fish.enable = true;
 }
