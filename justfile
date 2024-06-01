@@ -13,3 +13,7 @@ clean:
 # Initializes nix repl
 repl:
     nix repl --experimental-features 'nix-command flakes'
+
+# Updates lockfile
+update:
+    nix flake update --extra-experimental-features nix-command --extra-experimental-features flakes

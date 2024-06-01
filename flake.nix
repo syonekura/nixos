@@ -25,5 +25,9 @@
 
         namespace = "sy";
       };
+
+      systems.modules.nixos = with inputs; [
+        home-manager.nixosModules.home-manager
+      ];
     };
 }

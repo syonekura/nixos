@@ -9,12 +9,13 @@ Configuration for my Nixos Hosts.
 - Core Stack
   + [x] Firefox
   + [x] Fish
-  + [ ] Kitty
-  + [ ] Starship
+  + [x] Kitty
+  + [x] Starship
 - Photo Stack
   + [ ] DarkTable
   + [ ] Rapid Photo Downloader
 - Software Development Stack
+  + [ ] git
   + [ ] Helix
   + [ ] QEMU
   + [ ] mise
