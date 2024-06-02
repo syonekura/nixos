@@ -29,4 +29,6 @@
       graphics = true;
     };
   };
+
+  sy.modules.photo.enable = true;
 }

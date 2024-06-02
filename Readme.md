@@ -12,8 +12,8 @@ Configuration for my Nixos Hosts.
   + [x] Kitty
   + [x] Starship
 - Photo Stack
-  + [ ] DarkTable
-  + [ ] Rapid Photo Downloader
+  + [x] DarkTable
+  + [x] Rapid Photo Downloader
 - Software Development Stack
   + [ ] git
   + [ ] Helix
@@ -29,8 +29,7 @@ Configuration for my Nixos Hosts.
   + [ ] Insync
   + [ ] KeePassXC
 - Fonts
-  + [ ] FiraCode Nerd Font
-  + [ ] Jetbrains Mono
+  + [x] FiraCode Nerd Font
 
 ## Setup
 
