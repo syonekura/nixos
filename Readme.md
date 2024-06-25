@@ -25,7 +25,7 @@ Configuration for my Nixos Hosts.
   + [ ] Steam
 - Utilities Stack
   + [ ] Obsidian
-  + [ ] BackInTime
+  + [ ] Borg Backup
   + [ ] Insync
   + [ ] KeePassXC
 - Fonts

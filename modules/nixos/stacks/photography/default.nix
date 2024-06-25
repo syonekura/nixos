@@ -20,6 +20,14 @@ in {
     ];
   };
 
-  # TODO persist RPD config file, DT config file,
-  # change library.db / data.db of DT to other location for backup
+  snowfallorg.users.syonekura = {
+    home = {
+      config = {
+        # Everything in here is home-manager configuration.
+        # TODO persist RPD config file, DT config file,
+      };
+    };
+  };
+
+  # TODO Borg backup needs to cover library.db and data.db of DT for regular backups
 }
