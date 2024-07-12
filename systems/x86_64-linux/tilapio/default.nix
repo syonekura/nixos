@@ -31,4 +31,5 @@
   };
 
   sy.modules.photo.enable = true;
+  sy.modules.software.enable = true;
 }
