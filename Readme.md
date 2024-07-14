@@ -28,6 +28,7 @@ Configuration for my Nixos Hosts.
   + [x] Borg Backup
   + [ ] Insync
   + [ ] KeePassXC
+  + [ ] Ferdium
 - Fonts
   + [x] FiraCode Nerd Font
 
