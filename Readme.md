@@ -15,7 +15,7 @@ Configuration for my Nixos Hosts.
   + [x] DarkTable
   + [x] Rapid Photo Downloader
 - Software Development Stack
-  + [ ] git
+  + [x] git
   + [ ] Helix
   + [ ] QEMU
   + [ ] mise
@@ -25,7 +25,7 @@ Configuration for my Nixos Hosts.
   + [ ] Steam
 - Utilities Stack
   + [ ] Obsidian
-  + [ ] Borg Backup
+  + [x] Borg Backup
   + [ ] Insync
   + [ ] KeePassXC
 - Fonts
