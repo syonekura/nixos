@@ -16,11 +16,13 @@ Configuration for my Nixos Hosts.
   + [x] Rapid Photo Downloader
 - Software Development Stack
   + [x] git
-  + [ ] Helix
-  + [ ] QEMU
+  + [x] Helix
+  + [x] QEMU
   + [ ] mise
-  + [ ] Jetbrains Toolbox
-  + [ ] VS Code (only bc nix support is much more superior compared to JetBrains)
+  + [x] Jetbrains
+     - [x] PyCharm
+     - [x] RustRover
+  + [x] VS Code (only bc nix support is much more superior compared to JetBrains)
 - Gaming Stack
   + [ ] Steam
 - Utilities Stack
