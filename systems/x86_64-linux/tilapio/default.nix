@@ -30,6 +30,9 @@
     };
   };
 
-  sy.modules.photo.enable = true;
-  sy.modules.software.enable = true;
+  sy.modules = {
+    photo.enable = true;
+    software.enable = true;
+    utils.enable = true;
+  };
 }

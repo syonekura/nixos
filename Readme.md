@@ -12,7 +12,7 @@ Configuration for my Nixos Hosts.
   + [x] Kitty
   + [x] Starship
 - Photo Stack
-  + [x] DarkTable
+  + [x] DarkTable 
   + [x] Rapid Photo Downloader
 - Software Development Stack
   + [x] git
@@ -26,11 +26,11 @@ Configuration for my Nixos Hosts.
 - Gaming Stack
   + [ ] Steam
 - Utilities Stack
-  + [ ] Obsidian
+  + [x] Obsidian
   + [x] Borg Backup
-  + [ ] Insync
-  + [ ] KeePassXC
-  + [ ] Ferdium
+  + [x] Insync
+  + [x] KeePassXC
+  + [x] Ferdium
 - Fonts
   + [x] FiraCode Nerd Font
 
