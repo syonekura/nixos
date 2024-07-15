@@ -24,7 +24,7 @@ Configuration for my Nixos Hosts.
      - [x] RustRover
   + [x] VS Code (only bc nix support is much more superior compared to JetBrains)
 - Gaming Stack
-  + [ ] Steam
+  + [x] Steam
 - Utilities Stack
   + [x] Obsidian
   + [x] Borg Backup

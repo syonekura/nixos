@@ -27,6 +27,7 @@
       memorySize = 2048; # Use 2048MiB memory.
       cores = 3;
       graphics = true;
+      diskSize = 10000;
     };
   };
 
@@ -34,5 +35,6 @@
     photo.enable = true;
     software.enable = true;
     utils.enable = true;
+    gaming.enable = true;
   };
 }
