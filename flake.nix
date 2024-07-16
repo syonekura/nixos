@@ -12,6 +12,7 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = inputs:
@@ -32,6 +33,11 @@
 
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
+        catppuccin.nixosModules.catppuccin
+      ];
+
+      homes.modules = with inputs; [
+        catppuccin.homeManagerModules.catppuccin
       ];
     };
 }
