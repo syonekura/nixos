@@ -1,3 +1,4 @@
 result
 .idea
 *.qcow2
+*.fd

@@ -2,7 +2,7 @@
   description = "SY NixOS";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     snowfall-lib = {
       url = "github:snowfallorg/lib";
@@ -13,15 +13,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = inputs:
-    inputs.snowfall-lib.mkFlake {
-      channels-config = {
-        allowUnfree = true;
-      };
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
       inherit inputs;
       src = ./.;
+
       snowfall = {
         meta = {
           name = "sy";
@@ -30,14 +33,30 @@
 
         namespace = "sy";
       };
-
-      systems.modules.nixos = with inputs; [
-        home-manager.nixosModules.home-manager
-        catppuccin.nixosModules.catppuccin
-      ];
-
-      homes.modules = with inputs; [
-        catppuccin.homeManagerModules.catppuccin
-      ];
     };
+  in (lib.mkFlake {
+    channels-config = {
+      allowUnfree = true;
+    };
+    inherit inputs;
+    src = ./.;
+
+    systems.modules.nixos = with inputs; [
+      home-manager.nixosModules.home-manager
+      catppuccin.nixosModules.catppuccin
+      disko.nixosModules.disko
+    ];
+
+    homes.modules = with inputs; [
+      catppuccin.homeManagerModules.catppuccin
+    ];
+
+    # Tilapio is our test VM
+    systems.hosts.tilapio.modules = [
+      (import ./disks/default.nix {
+        inherit lib;
+        disks = ["/dev/vda"];
+      })
+    ];
+  });
 }
