@@ -66,15 +66,16 @@ in {
       };
     };
 
-    environment.systemPackages = [
-      pkgs.git
-      pkgs.qemu
-      pkgs.jetbrains.pycharm-professional
+    environment.systemPackages = with pkgs; [
+      git
+      qemu
+      jetbrains.pycharm-professional
       # Plugin support is limited to a predefined list, check
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/jetbrains/plugins/plugins.json
       # and it's readme. Forking + running update_plugins.py might be needed
       #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.pycharm-professional ["catppuccin"])
-      pkgs.jetbrains.rust-rover
+      jetbrains.rust-rover
+      devenv
     ];
   };
 }

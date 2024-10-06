@@ -5,7 +5,8 @@ Configuration for my Nixos Hosts.
 ## Features
 
 - [x] VM ready
-- [x] KDE
+- [x] Disko
+- [x] Gnome
 - Core Stack
   + [x] Firefox
   + [x] Fish
@@ -18,7 +19,7 @@ Configuration for my Nixos Hosts.
   + [x] git
   + [x] Helix
   + [x] QEMU
-  + [ ] mise
+  + [x] [devenv](https://devenv.sh)
   + [x] Jetbrains
      - [x] PyCharm
      - [x] RustRover

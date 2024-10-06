@@ -22,6 +22,7 @@
   };
 
   # Disko setup
+  disko.memSize = 8192;
   disko.devices = {
     disk = {
       one = {
