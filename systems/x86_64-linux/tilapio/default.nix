@@ -1,3 +1,4 @@
+# Tilapio is our test VM
 {...}: {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -18,5 +19,35 @@
     software.enable = true;
     utils.enable = true;
     gaming.enable = true;
+  };
+
+  # Disko setup
+  disko = {
+    devices = {
+      disk = {
+        one = {
+          type = "disk";
+          device = "/dev/vda";
+          imageSize = "5G";
+          content = {
+            type = "gpt";
+            partitions = {
+              boot = {
+                size = "1M";
+                type = "EF02";
+              };
+              root = {
+                size = "100%";
+                content = {
+                  type = "filesystem";
+                  format = "ext4";
+                  mountpoint = "/";
+                };
+              };
+            };
+          };
+        };
+      };
+    };
   };
 }

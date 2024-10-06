@@ -50,13 +50,5 @@
     homes.modules = with inputs; [
       catppuccin.homeManagerModules.catppuccin
     ];
-
-    # Tilapio is our test VM
-    systems.hosts.tilapio.modules = [
-      (import ./disks/default.nix {
-        inherit lib;
-        disks = ["/dev/vda"];
-      })
-    ];
   });
 }
