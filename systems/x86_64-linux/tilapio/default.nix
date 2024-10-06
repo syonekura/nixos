@@ -22,27 +22,66 @@
   };
 
   # Disko setup
-  disko = {
-    devices = {
-      disk = {
-        one = {
-          type = "disk";
-          device = "/dev/vda";
-          imageSize = "5G";
-          content = {
-            type = "gpt";
-            partitions = {
-              boot = {
-                size = "1M";
-                type = "EF02";
+  disko.devices = {
+    disk = {
+      one = {
+        type = "disk";
+        device = "/dev/vda";
+        imageSize = "5G";
+        content = {
+          type = "gpt";
+          partitions = {
+            boot = {
+              size = "1M";
+              type = "EF02";
+            };
+            mdadm = {
+              size = "100%";
+              content = {
+                type = "mdraid";
+                name = "raid0";
               };
-              root = {
-                size = "100%";
-                content = {
-                  type = "filesystem";
-                  format = "ext4";
-                  mountpoint = "/";
-                };
+            };
+          };
+        };
+      };
+
+      two = {
+        type = "disk";
+        device = "/dev/vdb";
+        imageSize = "5G";
+        content = {
+          type = "gpt";
+          partitions = {
+            boot = {
+              size = "1M";
+              type = "EF02";
+            };
+            mdadm = {
+              size = "100%";
+              content = {
+                type = "mdraid";
+                name = "raid0";
+              };
+            };
+          };
+        };
+      };
+    };
+
+    mdadm = {
+      raid0 = {
+        type = "mdadm";
+        level = 0;
+        content = {
+          type = "gpt";
+          partitions = {
+            primary = {
+              size = "100%";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
               };
             };
           };
