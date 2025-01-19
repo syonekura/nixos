@@ -68,6 +68,7 @@ in {
       cowsay
       fortune
       propagatedIcon
+      fastfetch
     ];
 
     users.users.${cfg.name} = {

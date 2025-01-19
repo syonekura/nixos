@@ -28,8 +28,8 @@ in {
     environment.systemPackages = gnomeExtensions;
 
     # Remove GNOME bloatware
-    environment.gnome.excludePackages = with pkgs.gnome; [
-      pkgs.gnome-tour
+    environment.gnome.excludePackages = with pkgs; [
+      gnome-tour
       geary
       gnome-maps
       epiphany

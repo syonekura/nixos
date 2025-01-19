@@ -1,5 +1,5 @@
 {pkgs, ...}: {
   config.environment.systemPackages = [
-    pkgs.fira-code-nerdfont
+    pkgs.nerd-fonts.fira-code
   ];
 }
