@@ -2,6 +2,21 @@
 
 Configuration for my Nixos Hosts.
 
+## One CLI install
+
+Use a NIxOS minimal ISO image live CD and run this on the terminal:
+
+```bash
+MACHINE="SalmonTipoJurel"
+sudo nix \
+    --extra-experimental-features 'flakes nix-command' \
+    run github:nix-community/disko#disko-install -- \
+    --flake "github:syonekura/nixos#$MACHINE" \
+    --write-efi-boot-entries \
+    --disk one "..." \
+    --disk two "..."
+```
+
 ## Features
 
 - [x] VM ready
@@ -35,7 +50,7 @@ Configuration for my Nixos Hosts.
 - Fonts
   + [x] FiraCode Nerd Font
 
-## Setup
+## Dev Setup
 
 Pre-requisites:
 - [pre-commit](https://pre-commit.com/)
@@ -54,3 +69,4 @@ The setup is highly influenced by this guide on setting up [NixOS to run on VMs]
 - [Jake Hamilton's Config](https://github.com/jakehamilton/config/)
 - [NixOS package search](https://search.nixos.org/packages)
 - [Home Manager Option search](https://home-manager-options.extranix.com/)
+- [Install NixOS with disko](https://nixos.asia/en/nixos-install-disko)
