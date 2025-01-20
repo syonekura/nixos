@@ -8,9 +8,6 @@
 }:
 with lib;
 with lib.${namespace};
-#let
-#  cfg = config.${namespace}.hardware.networking;
-#in
 {
 # TODO add options
 #  options.${namespace}.hardware.networking = with types; {
