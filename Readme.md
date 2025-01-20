@@ -7,14 +7,13 @@ Configuration for my Nixos Hosts.
 Use a NIxOS minimal ISO image live CD and run this on the terminal:
 
 ```bash
-MACHINE="SalmonTipoJurel"
 sudo nix \
     --extra-experimental-features 'flakes nix-command' \
     run github:nix-community/disko#disko-install -- \
-    --flake "github:syonekura/nixos#$MACHINE" \
+    --flake "github:syonekura/nixos#SalmonTipoJurel" \
     --write-efi-boot-entries \
-    --disk one "..." \
-    --disk two "..."
+    --disk one /dev/nvme0n1 \
+    --disk two /dev/nvme1n1
 ```
 
 ## Features
