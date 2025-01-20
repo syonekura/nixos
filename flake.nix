@@ -18,6 +18,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = inputs: let
@@ -45,6 +46,8 @@
       home-manager.nixosModules.home-manager
       catppuccin.nixosModules.catppuccin
       disko.nixosModules.disko
+      # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix#L119
+      nixos-hardware.nixosModules.focus-m2-gen1
     ];
 
     homes.modules = with inputs; [

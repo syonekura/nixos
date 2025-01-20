@@ -36,7 +36,7 @@
               type = "EF02";
             };
             ESP = {
-              size = "64M";
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
