@@ -2,9 +2,22 @@
 
 Configuration for my Nixos Hosts.
 
-## One CLI install
+## Install steps
 
-Use a NIxOS minimal ISO image live CD and run this on the terminal:
+Use a NixOS minimal ISO image live meida.
+
+Allocate enough space for the installation process:
+
+```bash
+sudo fallocate -l 60G swapfile
+sudo chmod 0600 swapfile
+sudo mkswap swapfile
+sudo swapon swapfile
+sudo mount -o remount,size=30G,noatime /nix/.rw-store
+sudo mount -o remount,size=30G,noatime /
+```
+
+Then install the SO:
 
 ```bash
 sudo nix \
@@ -14,6 +27,14 @@ sudo nix \
     --write-efi-boot-entries \
     --disk one /dev/nvme0n1 \
     --disk two /dev/nvme1n1
+```
+
+## Maintenance
+
+Perform changes on this repo and then execute
+
+```bash
+sudo nixos-rebuild switch --flake .
 ```
 
 ## Features
