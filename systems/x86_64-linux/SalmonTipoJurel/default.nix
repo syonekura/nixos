@@ -35,7 +35,7 @@
               type = "EF02";
             };
             ESP = {
-              size = "500M";
+              size = "250M";
               type = "EF00";
               content = {
                 type = "mdraid";
@@ -64,7 +64,7 @@
               type = "EF02";
             };
             ESP = {
-              size = "500M";
+              size = "250M";
               type = "EF00";
               content = {
                 type = "mdraid";
@@ -86,7 +86,7 @@
     mdadm = {
       boot = {
         type = "mdadm";
-        level = 1;
+        level = 0;
         metadata = "1.0";
         content = {
           type = "filesystem";
