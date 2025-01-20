@@ -34,6 +34,14 @@
               size = "1M";
               type = "EF02";
             };
+            ESP = {
+              size = "500M";
+              type = "EF00";
+              content = {
+                type = "mdraid";
+                name = "boot";
+              };
+            };
             mdadm = {
               size = "100%";
               content = {
@@ -55,6 +63,14 @@
               size = "1M";
               type = "EF02";
             };
+            ESP = {
+              size = "500M";
+              type = "EF00";
+              content = {
+                type = "mdraid";
+                name = "boot";
+              };
+            };
             mdadm = {
               size = "100%";
               content = {
@@ -68,6 +84,17 @@
     };
 
     mdadm = {
+      boot = {
+        type = "mdadm";
+        level = 1;
+        metadata = "1.0";
+        content = {
+          type = "filesystem";
+          format = "vfat";
+          mountpoint = "/boot";
+          mountOptions = [ "umask=0077" ];
+        };
+      };
       raid0 = {
         type = "mdadm";
         level = 0;
