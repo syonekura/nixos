@@ -23,10 +23,6 @@ with lib.${namespace};
     sy.user.extraGroups = [ "networkmanager" ];
 
     networking = {
-      hosts = {
-        "127.0.0.1" = [ "local.test" ] ++ (cfg.hosts."127.0.0.1" or [ ]);
-      };
-
       networkmanager = {
         enable = true;
         dhcp = "internal";
