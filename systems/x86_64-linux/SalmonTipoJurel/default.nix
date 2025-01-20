@@ -87,7 +87,6 @@
       boot = {
         type = "mdadm";
         level = 0;
-        metadata = "1.0";
         content = {
           type = "filesystem";
           format = "vfat";
