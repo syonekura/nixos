@@ -69,6 +69,7 @@ in {
       fortune
       propagatedIcon
       fastfetch
+      lshw
     ];
 
     users.users.${cfg.name} = {
