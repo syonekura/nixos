@@ -13,18 +13,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  # provided by disko setup
-  #fileSystems."/" =
-  #  { device = "/dev/disk/by-uuid/e2febfcc-564f-4aac-bb25-dc06052fb682";
-  #    fsType = "ext4";
-  #  };
-
-  #fileSystems."/boot" =
-  #  { device = "/dev/disk/by-uuid/3C1E-78FB";
-  #    fsType = "vfat";
-  #    options = [ "fmask=0077" "dmask=0077" ];
-  #  };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

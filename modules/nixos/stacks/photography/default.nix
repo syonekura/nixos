@@ -15,7 +15,7 @@ with lib.types; let
     ];
     text = ''
       # Setting this, so the repo does not need to be given on the commandline:
-      export BORG_REPO=/media/syonekura/wd_elements1/borg
+      export BORG_REPO=/run/media/syonekura/wd_elements/borg
 
       ${pkgs.borgbackup}/bin/borg create                              \
           --stats                                                     \
@@ -48,6 +48,7 @@ in {
     environment.systemPackages = [
       pkgs.darktable
       pkgs.rapid-photo-downloader
+      pkgs.borgbackup
     ];
 
     snowfallorg.users.syonekura.home.config = {
