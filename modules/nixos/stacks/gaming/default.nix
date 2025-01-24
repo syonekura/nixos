@@ -2,6 +2,7 @@
   lib,
   namespace,
   config,
+  pkgs,
   ...
 }:
 with lib.types; let
@@ -14,5 +15,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.steam.enable = true;
+    environment.systemPackages = with pkgs; [
+        wine
+        winetricks
+        discord
+    ];
   };
 }
