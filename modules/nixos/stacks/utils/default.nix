@@ -19,6 +19,7 @@ in {
       pkgs.insync
       pkgs.keepassxc
       pkgs.ferdium
+      pkgs.vlc
     ];
   };
 }
