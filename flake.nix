@@ -19,6 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixd.url = "github:nix-community/nixd";
   };
 
   outputs = inputs: let

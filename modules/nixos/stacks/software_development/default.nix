@@ -3,6 +3,7 @@
   namespace,
   config,
   pkgs,
+  inputs,
   ...
 }:
 with lib.types; let
@@ -27,7 +28,9 @@ in {
           enable = true;
           settings = {
             theme = "catppuccin_mocha";
-            bufferline = "always";
+            editor = {
+              bufferline = "always";
+            };
           };
         };
 
@@ -76,6 +79,7 @@ in {
       #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.pycharm-professional ["catppuccin"])
       jetbrains.rust-rover
       devenv
+      nixd
     ];
   };
 }
