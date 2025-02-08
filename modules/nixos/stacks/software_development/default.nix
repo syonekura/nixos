@@ -29,7 +29,9 @@ in {
           settings = {
             theme = "catppuccin_mocha";
             editor = {
+              lsp.display-inlay-hints = true;
               bufferline = "always";
+              line-number = "relative";
             };
           };
           languages = {
@@ -95,10 +97,10 @@ in {
       # and it's readme. Forking + running update_plugins.py might be needed
       #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.pycharm-professional ["catppuccin"])
       jetbrains.rust-rover
-      devenv
+      # Nix Language support
       nixd
-      pkgs.alejandra
-      pkgs.nil
+      alejandra
+      nil
     ];
   };
 }
