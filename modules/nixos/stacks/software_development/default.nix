@@ -45,6 +45,7 @@ in {
             ];
             language-server.nixd = {
               command = "nixd";
+              args = ["--inlay-hints=true"];
               config.formatting.command = "alejandra";
             };
           };
