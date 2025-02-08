@@ -32,6 +32,22 @@ in {
               bufferline = "always";
             };
           };
+          languages = {
+            language = [
+              {
+                name = "nix";
+                language-servers = ["nixd" "nil"];
+                auto-format = true;
+                formatter = {
+                  command = "alejandra";
+                };
+              }
+            ];
+            language-server.nixd = {
+              command = "nixd";
+              config.formatting.command = "alejandra";
+            };
+          };
         };
 
         vscode = {
@@ -80,6 +96,8 @@ in {
       jetbrains.rust-rover
       devenv
       nixd
+      pkgs.alejandra
+      pkgs.nil
     ];
   };
 }

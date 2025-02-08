@@ -7,20 +7,19 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-{
-# TODO add options
-#  options.${namespace}.hardware.networking = with types; {
-#    enable = mkOption {
-#    type = bool;
-#    default = false;
-#  };
-#    hosts = mkOpt attrs { } (mdDoc "An attribute set to merge with `networking.hosts`");
-#  };
+with lib.${namespace}; {
+  # TODO add options
+  #  options.${namespace}.hardware.networking = with types; {
+  #    enable = mkOption {
+  #    type = bool;
+  #    default = false;
+  #  };
+  #    hosts = mkOpt attrs { } (mdDoc "An attribute set to merge with `networking.hosts`");
+  #  };
 
-#  config = mkIf cfg.enable {
-   config = {
-    sy.user.extraGroups = [ "networkmanager" ];
+  #  config = mkIf cfg.enable {
+  config = {
+    sy.user.extraGroups = ["networkmanager"];
 
     networking = {
       networkmanager = {

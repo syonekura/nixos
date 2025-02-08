@@ -16,9 +16,9 @@ in {
   config = lib.mkIf cfg.enable {
     programs.steam.enable = true;
     environment.systemPackages = with pkgs; [
-        wine
-        winetricks
-        discord
+      wine
+      winetricks
+      discord
     ];
   };
 }

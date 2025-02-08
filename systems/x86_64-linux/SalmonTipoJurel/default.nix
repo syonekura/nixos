@@ -12,12 +12,10 @@
     gaming.enable = true;
 
     # TODO enable options
-#    hardware = {
-#        networking.enable = true;
-#    };
+    #    hardware = {
+    #        networking.enable = true;
+    #    };
   };
-
-
 
   # Enable OpenGL
   hardware.graphics = {
@@ -45,15 +43,15 @@
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
   };
   hardware.nvidia.prime = {
-		offload = {
-			enable = true;
-			enableOffloadCmd = true;
-		};
-	};
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
+  };
 
   imports = [
     # Include the results of the hardware scan.
@@ -82,7 +80,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = ["umask=0077"];
               };
             };
             mdadm = {
