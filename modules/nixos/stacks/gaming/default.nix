@@ -19,6 +19,7 @@ in {
       wine
       winetricks
       discord
+      linuxKernel.packages.linux_6_6.xone
     ];
   };
 }
