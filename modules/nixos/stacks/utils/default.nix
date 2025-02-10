@@ -20,6 +20,8 @@ in {
       pkgs.keepassxc
       pkgs.ferdium
       pkgs.vlc
+      pkgs.fragments
+      pkgs.spotify
     ];
   };
 }

@@ -23,6 +23,7 @@ in {
 
     # Enable the GNOME Desktop Environment.
     services.xserver.displayManager.gdm.enable = true;
+    services.xserver.displayManager.gdm.autoSuspend = false;
     # TODO setting up to false logs out the user after changes on Display Settings
     # Disable Wayland (defaut to true) in GNOME. It causes a lot of flickering on external monitors
     services.xserver.displayManager.gdm.wayland = true;
