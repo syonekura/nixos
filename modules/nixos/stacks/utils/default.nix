@@ -22,6 +22,7 @@ in {
       pkgs.vlc
       pkgs.fragments
       pkgs.spotify
+      pkgs.calibre
     ];
   };
 }
