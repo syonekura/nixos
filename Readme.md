@@ -37,6 +37,12 @@ Perform changes on this repo and then execute
 sudo nixos-rebuild switch --flake .
 ```
 
+Upgrade dependencies (flake.lock) with
+
+```bash
+nix flake update
+```
+
 ## Features
 
 - [x] VM ready
