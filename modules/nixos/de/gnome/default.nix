@@ -69,6 +69,10 @@ in {
         "org/gnome/shell/app-switcher" = {
           current-workspace-only = true;
         };
+        # Enable or disable pop-up notifications here
+        "org/gnome/desktop/notifications/application" = {
+          "ferdium/enable" = false;
+        };
       };
     };
   };

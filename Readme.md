@@ -49,6 +49,16 @@ Clean up unused dependencies and free some space with
 sudo nix-collect-garbage -d
 ```
 
+### Tweaking Gnome settings
+
+Open a terminal and type
+
+```bash
+  dconf watch /
+```
+
+  then perform any changes on gnome settings manually, dconf watch will print out the key/value pair for each change. Those can then be added to the gnome nix file
+
 ## Features
 
 - [x] VM ready
