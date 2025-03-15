@@ -43,6 +43,12 @@ Upgrade dependencies (flake.lock) with
 nix flake update
 ```
 
+Clean up unused dependencies and free some space with
+
+```bash
+sudo nix-collect-garbage -d
+```
+
 ## Features
 
 - [x] VM ready
