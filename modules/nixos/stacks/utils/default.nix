@@ -23,6 +23,7 @@ in {
       pkgs.fragments
       pkgs.spotify
       pkgs.calibre
+      pkgs.anki
     ];
   };
 }

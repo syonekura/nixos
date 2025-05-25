@@ -50,6 +50,8 @@ in {
       pkgs.darktable
       pkgs.rapid-photo-downloader
       pkgs.borgbackup
+      pkgs.ffmpeg
+      pkgs.exiftool
     ];
 
     snowfallorg.users.syonekura.home.config = {
