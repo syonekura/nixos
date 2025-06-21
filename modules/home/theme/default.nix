@@ -1,3 +1,3 @@
 {...}: {
-  programs.kitty.theme = "Catppuccin-Mocha";
+  programs.kitty.themeFile = "Catppuccin-Mocha";
 }

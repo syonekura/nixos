@@ -73,6 +73,15 @@ in {
         "org/gnome/desktop/notifications/application" = {
           "ferdium/enable" = false;
         };
+        "org/gnome/desktop/input-sources" = with lib.gvariant; {
+          "sources" = [
+            (mkTuple ["xkb" "us"])
+            (mkTuple ["xkb" "latam"])
+          ];
+          "mru-sources" = [
+            (mkTuple ["xkb" "us"])
+          ];
+        };
       };
     };
   };

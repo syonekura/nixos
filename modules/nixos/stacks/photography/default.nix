@@ -52,6 +52,7 @@ in {
       pkgs.borgbackup
       pkgs.ffmpeg
       pkgs.exiftool
+      pkgs.shotcut
     ];
 
     snowfallorg.users.syonekura.home.config = {
