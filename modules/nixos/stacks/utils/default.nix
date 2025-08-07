@@ -24,6 +24,7 @@ in {
       pkgs.spotify
       pkgs.calibre
       pkgs.anki
+      pkgs.geekbench
     ];
   };
 }

@@ -17,6 +17,17 @@
     #    };
   };
 
+  # https://nixos.wiki/wiki/Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+      };
+    };
+  };
+
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
