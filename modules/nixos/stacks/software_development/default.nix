@@ -101,6 +101,10 @@ in {
       nixd
       alejandra
       nil
+      # Misc
+      jq
+      perl
+      curl
     ];
   };
 }
