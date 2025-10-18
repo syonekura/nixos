@@ -63,26 +63,29 @@ in {
             pkgs.vscode-extensions.jnoortheen.nix-ide
           ];
           userSettings = {
-            editor.fontFamily = "'Fira Code Nerd Font', 'monospace', monospace";
-            editor.tabSize = 2;
+            "editor.fontFamily" = "'Fira Code Nerd Font', 'monospace', monospace";
+            "editor.semanticHighlighting.enabled" = true;
+            "editor.tabSize" = 2;
 
-            window.zoomLevel = 0.3;
+            "files.autoSave" = "afterDelay";
+            "files.autoSaveDelay" = 1000;
 
-            nix.enableLanguageServer = true;
-            nix.serverPath = "nil";
-            workbench.settings.applyToAllProfiles = [
+            "window.zoomLevel" = 0.7;
+
+            "nix.enableLanguageServer" = true;
+            "nix.serverPath" = "nixd";
+            "workbench.settings.applyToAllProfiles" = [
               "editor.fontSize"
               "editor.fontFamily"
               "window.zoomLevel"
             ];
-            explorer.confirmDelete = false;
-            explorer.confirmDragAndDrop = false;
-            git.autofetch = true;
-            workbench.colorTheme = "Catppuccin Mocha";
-            editor.semanticHighlighting.enabled = true;
-            terminal.integrated.minimumContrastRatio = 1;
-            window.titleBarStyle = "custom";
-            workbench.iconTheme = "catppuccin-mocha";
+            "explorer.confirmDelete" = false;
+            "explorer.confirmDragAndDrop" = false;
+            "git.autofetch" = true;
+            "workbench.colorTheme" = "Catppuccin Mocha";
+            "terminal.integrated.minimumContrastRatio" = 1;
+            "window.titleBarStyle" = "custom";
+            "workbench.iconTheme" = "catppuccin-mocha";
           };
         };
       };
