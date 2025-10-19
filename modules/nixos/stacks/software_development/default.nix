@@ -54,39 +54,42 @@ in {
 
         vscode = {
           enable = true;
-          extensions = [
-            pkgs.vscode-extensions.ms-python.python
-            pkgs.vscode-extensions.ms-python.debugpy
-            pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons
-            pkgs.vscode-extensions.catppuccin.catppuccin-vsc
-            pkgs.vscode-extensions.kamadorueda.alejandra
-            pkgs.vscode-extensions.bbenoist.nix
-            pkgs.vscode-extensions.jnoortheen.nix-ide
-          ];
-          userSettings = {
-            "editor.fontFamily" = "'Fira Code Nerd Font', 'monospace', monospace";
-            "editor.semanticHighlighting.enabled" = true;
-            "editor.tabSize" = 2;
-
-            "files.autoSave" = "afterDelay";
-            "files.autoSaveDelay" = 1000;
-
-            "window.zoomLevel" = 0.7;
-
-            "nix.enableLanguageServer" = true;
-            "nix.serverPath" = "nixd";
-            "workbench.settings.applyToAllProfiles" = [
-              "editor.fontSize"
-              "editor.fontFamily"
-              "window.zoomLevel"
+          profiles.default = {
+            extensions = [
+              pkgs.vscode-extensions.ms-python.python
+              pkgs.vscode-extensions.ms-python.debugpy
+              pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons
+              pkgs.vscode-extensions.catppuccin.catppuccin-vsc
+              pkgs.vscode-extensions.kamadorueda.alejandra
+              pkgs.vscode-extensions.bbenoist.nix
+              pkgs.vscode-extensions.jnoortheen.nix-ide
             ];
-            "explorer.confirmDelete" = false;
-            "explorer.confirmDragAndDrop" = false;
-            "git.autofetch" = true;
-            "workbench.colorTheme" = "Catppuccin Mocha";
-            "terminal.integrated.minimumContrastRatio" = 1;
-            "window.titleBarStyle" = "custom";
-            "workbench.iconTheme" = "catppuccin-mocha";
+
+            userSettings = {
+              "editor.fontFamily" = "'Fira Code Nerd Font', 'monospace', monospace";
+              "editor.semanticHighlighting.enabled" = true;
+              "editor.tabSize" = 2;
+
+              "files.autoSave" = "afterDelay";
+              "files.autoSaveDelay" = 1000;
+
+              "window.zoomLevel" = 0.7;
+
+              "nix.enableLanguageServer" = true;
+              "nix.serverPath" = "nixd";
+              "workbench.settings.applyToAllProfiles" = [
+                "editor.fontSize"
+                "editor.fontFamily"
+                "window.zoomLevel"
+              ];
+              "explorer.confirmDelete" = false;
+              "explorer.confirmDragAndDrop" = false;
+              "git.autofetch" = true;
+              "workbench.colorTheme" = "Catppuccin Mocha";
+              "terminal.integrated.minimumContrastRatio" = 1;
+              "window.titleBarStyle" = "custom";
+              "workbench.iconTheme" = "catppuccin-mocha";
+            };
           };
         };
       };
@@ -95,12 +98,6 @@ in {
     environment.systemPackages = with pkgs; [
       git
       qemu
-      jetbrains.pycharm-professional
-      # Plugin support is limited to a predefined list, check
-      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/jetbrains/plugins/plugins.json
-      # and it's readme. Forking + running update_plugins.py might be needed
-      #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.pycharm-professional ["catppuccin"])
-      jetbrains.rust-rover
       # Nix Language support
       nixd
       alejandra

@@ -18,16 +18,18 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # Enable the X11 windowing system.
-    services.xserver.enable = true;
-
-    # Enable the GNOME Desktop Environment.
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.displayManager.gdm.autoSuspend = false;
-    # TODO setting up to false logs out the user after changes on Display Settings
-    # Disable Wayland (defaut to true) in GNOME. It causes a lot of flickering on external monitors
-    services.xserver.displayManager.gdm.wayland = true;
-    services.xserver.desktopManager.gnome.enable = true;
+    services = {
+      # Enable the X11 windowing system.
+      xserver.enable = true;
+      desktopManager.gnome.enable = true;
+      displayManager = {
+        gdm = {
+          enable = true;
+          autoSuspend = false;
+          wayland = true;
+        };
+      };
+    };
 
     environment.systemPackages = gnomeExtensions;
 

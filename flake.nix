@@ -9,9 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      # https://github.com/NixOS/nixpkgs/issues/445447
-      #url = "github:nix-community/home-manager/master";
-      url = "github:nix-community/home-manager/release-25.05";
+      # Points to 25.11 (current unstable). Last updated 2025-10-18 (nix flake update + sudo nixos rebuild switch)
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
