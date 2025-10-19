@@ -3,7 +3,6 @@
   namespace,
   config,
   pkgs,
-  inputs,
   ...
 }:
 with lib.types; let
@@ -38,7 +37,7 @@ in {
             language = [
               {
                 name = "nix";
-                language-servers = ["nixd" "nil"];
+                language-servers = ["nixd"];
                 auto-format = true;
                 formatter = {
                   command = "alejandra";
@@ -56,6 +55,8 @@ in {
         vscode = {
           enable = true;
           extensions = [
+            pkgs.vscode-extensions.ms-python.python
+            pkgs.vscode-extensions.ms-python.debugpy
             pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons
             pkgs.vscode-extensions.catppuccin.catppuccin-vsc
             pkgs.vscode-extensions.kamadorueda.alejandra
@@ -103,7 +104,6 @@ in {
       # Nix Language support
       nixd
       alejandra
-      nil
       # Misc
       jq
       perl
