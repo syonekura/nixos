@@ -11,7 +11,7 @@
     home-manager = {
       # https://github.com/NixOS/nixpkgs/issues/445447
       #url = "github:nix-community/home-manager/master";
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
