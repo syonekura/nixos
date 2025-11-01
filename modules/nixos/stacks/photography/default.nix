@@ -25,7 +25,6 @@ with lib.types; let
           ~/Pictures/                                                 \
           ~/.config/darktable/                                        \
           ~/.config/Rapid\ Photo\ Downloader/                         \
-          ~/.config/instaloader/latest-stamps.ini                     \
           ~/Videos/
 
       ${pkgs.borgbackup}/bin/borg prune                       \
