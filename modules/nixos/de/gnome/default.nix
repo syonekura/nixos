@@ -31,7 +31,10 @@ in {
       };
     };
 
-    environment.systemPackages = gnomeExtensions;
+    environment.systemPackages = gnomeExtensions ++ [
+      pkgs.ffmpeg-headless
+      pkgs.ffmpegthumbnailer
+    ];
 
     # Remove GNOME bloatware
     environment.gnome.excludePackages = with pkgs; [
