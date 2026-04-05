@@ -18,8 +18,11 @@ in {
       home.config.programs = {
         git = {
           enable = true;
-          userEmail = "sebastian.yonekura@gmail.com";
-          userName = "Sebastian Yonekura";
+          signing.format = "ssh";
+          settings = {
+            user.name = "Sebastian Yonekura";
+            user.email = "sebastian.yonekura@gmail.com";
+          };
         };
 
         helix = {

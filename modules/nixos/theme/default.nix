@@ -21,6 +21,7 @@
     ];
     # catppuccin.enable also turns this setting on
     # however this causes to use sddm for login and lightdm for unlocking when using kde
-    services.displayManager.sddm.catppuccin.enable = lib.mkIf config.${namespace}.modules.kde.enable false;
+    # update, setting was removed
+    # services.displayManager.sddm.catppuccin.enable = lib.mkIf config.${namespace}.modules.kde.enable false;
   };
 }

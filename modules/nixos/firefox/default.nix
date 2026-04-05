@@ -44,9 +44,5 @@ in {
           ];
       };
     };
-    environment.systemPackages = with pkgs; [
-      # Companion app for VideoDownloadHelper
-      vdhcoapp
-    ];
   };
 }

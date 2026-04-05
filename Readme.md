@@ -49,6 +49,13 @@ Clean up unused dependencies and free some space with
 sudo nix-collect-garbage -d
 ```
 
+Clean up boot entries with switch to boot + garbage collect
+
+```bash
+sudo /run/current-system/bin/switch-to-configuration boot
+sudo nix-collect-garbage -d
+```
+
 ### Tweaking Gnome settings
 
 Open a terminal and type
@@ -58,50 +65,6 @@ Open a terminal and type
 ```
 
   then perform any changes on gnome settings manually, dconf watch will print out the key/value pair for each change. Those can then be added to the gnome nix file
-
-## Features
-
-- [x] VM ready
-- [x] Disko
-- [x] Gnome
-- Core Stack
-  + [x] Firefox
-  + [x] Fish
-  + [x] Kitty
-  + [x] Starship
-- Photo Stack
-  + [x] DarkTable 
-  + [x] Rapid Photo Downloader
-- Software Development Stack
-  + [x] git
-  + [x] Helix
-  + [x] QEMU
-  + [x] [devenv](https://devenv.sh)
-  + [x] Jetbrains
-     - [x] PyCharm
-     - [x] RustRover
-  + [x] VS Code (only bc nix support is much more superior compared to JetBrains)
-- Gaming Stack
-  + [x] Steam
-- Utilities Stack
-  + [x] Obsidian
-  + [x] Borg Backup
-  + [x] Insync
-  + [x] KeePassXC
-  + [x] Ferdium
-- Fonts
-  + [x] FiraCode Nerd Font
-
-## Dev Setup
-
-Pre-requisites:
-- [pre-commit](https://pre-commit.com/)
-- [alejandra](https://github.com/kamadorueda/alejandra)
-- [just](https://github.com/casey/just)
-- [nix](https://nixos.org/)
-- [qemu](https://www.qemu.org/)
-
-After installing all pre-requisites, activate precommit by running `pre-commit install`.
 
 ## Useful docs / links
 

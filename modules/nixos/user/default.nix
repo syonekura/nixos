@@ -21,7 +21,7 @@ with lib.types; let
     passthru = {fileName = defaultIconFileName;};
   };
   propagatedIcon =
-    pkgs.runCommandNoCC "propagated-icon"
+    pkgs.runCommand "propagated-icon"
     {passthru = {fileName = cfg.icon.fileName;};}
     ''
       local target="$out/share/syonekura-icons/user/${cfg.name}"
