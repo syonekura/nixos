@@ -108,6 +108,8 @@ in {
       jq
       perl
       curl
+      # Agentic
+      claude-code
     ];
   };
 }
