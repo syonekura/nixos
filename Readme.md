@@ -4,7 +4,7 @@ Configuration for my Nixos Hosts.
 
 ## Install steps
 
-Use a NixOS minimal ISO image live meida.
+Use a NixOS minimal ISO image live media.
 
 Allocate enough space for the installation process:
 
@@ -17,17 +17,32 @@ sudo mount -o remount,size=30G,noatime /nix/.rw-store
 sudo mount -o remount,size=30G,noatime /
 ```
 
-Then install the SO:
+### SalmonTipoJurel
 
 ```bash
-sudo nix \
-    --extra-experimental-features 'flakes nix-command' \
+nix shell nixpkgs#whois --command mkpasswd -m sha-512 | sudo tee /tmp/sy-pw > /dev/null && \
+sudo nix --extra-experimental-features 'flakes nix-command' \
     run github:nix-community/disko#disko-install -- \
     --flake "github:syonekura/nixos#SalmonTipoJurel" \
     --write-efi-boot-entries \
     --disk one /dev/nvme0n1 \
-    --disk two /dev/nvme1n1
+    --disk two /dev/nvme1n1 \
+    --extra-files /tmp/sy-pw:/etc/secrets/syonekura-password
 ```
+
+### Atun
+
+```bash
+nix shell nixpkgs#whois --command mkpasswd -m sha-512 | sudo tee /tmp/sy-pw > /dev/null && \
+sudo nix --extra-experimental-features 'flakes nix-command' \
+    run github:nix-community/disko#disko-install -- \
+    --flake "github:syonekura/nixos#Atun" \
+    --write-efi-boot-entries \
+    --disk one /dev/nvme0n1 \
+    --extra-files /tmp/sy-pw:/etc/secrets/syonekura-password
+```
+
+> Note: replace `/dev/nvme0n1` with `/dev/sda` if Atun has a SATA SSD.
 
 ## Maintenance
 
@@ -61,10 +76,10 @@ sudo nix-collect-garbage -d
 Open a terminal and type
 
 ```bash
-  dconf watch /
+dconf watch /
 ```
 
-  then perform any changes on gnome settings manually, dconf watch will print out the key/value pair for each change. Those can then be added to the gnome nix file
+then perform any changes on gnome settings manually, dconf watch will print out the key/value pair for each change. Those can then be added to the gnome nix file
 
 ## Useful docs / links
 
