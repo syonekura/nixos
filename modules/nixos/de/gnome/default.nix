@@ -5,6 +5,7 @@
   pkgs,
   ...
 }:
+with lib;
 with lib.types; let
   cfg = config.${namespace}.modules.de.gnome;
   gnomeExtensions = with pkgs.gnomeExtensions; [
@@ -12,14 +13,19 @@ with lib.types; let
     bing-wallpaper-changer
   ];
 in {
-  options.${namespace}.modules.de.gnome.enable = lib.mkOption {
-    type = bool;
-    default = true;
+  options.${namespace} = {
+    modules.de.gnome.enable = mkOption {
+      type = bool;
+      default = true;
+    };
+    gnome.favoriteApps = mkOption {
+      type = listOf str;
+      default = [];
+    };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services = {
-      # Enable the X11 windowing system.
       xserver.enable = true;
       desktopManager.gnome.enable = true;
       displayManager = {
@@ -39,7 +45,6 @@ in {
         pkgs.file
       ];
 
-    # Remove GNOME bloatware
     environment.gnome.excludePackages = with pkgs; [
       gnome-tour
       geary
@@ -52,15 +57,7 @@ in {
         "org/gnome/shell" = {
           disable-user-extensions = false;
           enabled-extensions = builtins.map (extension: extension.extensionUuid) gnomeExtensions;
-          favorite-apps = with lib.lists;
-            [
-              "org.gnome.Nautilus.desktop"
-            ]
-            ++ optional config.${namespace}.modules.firefox.enable "firefox.desktop"
-            ++ optional config.${namespace}.modules.utils.enable "obsidian.desktop"
-            ++ optional config.${namespace}.modules.utils.enable "ferdium.desktop"
-            ++ optional config.${namespace}.modules.software.enable "code.desktop"
-            ++ optional config.${namespace}.modules.gaming.enable "steam.desktop";
+          favorite-apps = ["org.gnome.Nautilus.desktop"] ++ config.${namespace}.gnome.favoriteApps;
         };
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
@@ -77,7 +74,6 @@ in {
         "org/gnome/shell/app-switcher" = {
           current-workspace-only = true;
         };
-        # Enable or disable pop-up notifications here
         "org/gnome/desktop/notifications/application" = {
           "ferdium/enable" = false;
         };

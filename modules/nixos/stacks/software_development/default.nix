@@ -14,6 +14,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    ${namespace}.gnome.favoriteApps = ["code.desktop"];
+
     snowfallorg.users.syonekura = {
       home.config.programs = {
         git = {

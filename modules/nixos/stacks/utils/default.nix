@@ -14,6 +14,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    ${namespace}.gnome.favoriteApps = ["obsidian.desktop" "ferdium.desktop"];
+
     environment.systemPackages = [
       pkgs.obsidian
       pkgs.insync

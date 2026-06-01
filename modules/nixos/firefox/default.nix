@@ -14,6 +14,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    ${namespace}.gnome.favoriteApps = ["firefox.desktop"];
+
     programs.firefox = {
       enable = true;
       policies = {

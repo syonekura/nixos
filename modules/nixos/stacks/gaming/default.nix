@@ -14,6 +14,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    ${namespace}.gnome.favoriteApps = ["steam.desktop"];
+
     programs.steam.enable = true;
     environment.systemPackages = with pkgs; [
       wine

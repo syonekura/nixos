@@ -51,10 +51,10 @@ in {
       default = "sebastian.yonekura@gmail.com";
       description = "Email address of the user";
     };
-    initialPassword = lib.mkOption {
+    hashedPasswordFile = lib.mkOption {
       type = str;
-      default = "password";
-      description = "Initial password to use";
+      default = "/etc/secrets/syonekura-password";
+      description = "Path to file containing the hashed user password";
     };
     extraGroups = lib.mkOption {
       type = listOf str;
@@ -74,7 +74,8 @@ in {
 
     users.users.${cfg.name} = {
       isNormalUser = true;
-      inherit (cfg) name initialPassword;
+      inherit (cfg) name;
+      hashedPasswordFile = cfg.hashedPasswordFile;
       description = cfg.fullName;
       home = "/home/${cfg.name}";
       group = "users";
