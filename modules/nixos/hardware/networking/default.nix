@@ -1,24 +1,19 @@
 {
-  options,
   config,
-  pkgs,
   lib,
   namespace,
   ...
 }:
 with lib;
-with lib.${namespace}; {
-  # TODO add options
-  #  options.${namespace}.hardware.networking = with types; {
-  #    enable = mkOption {
-  #    type = bool;
-  #    default = false;
-  #  };
-  #    hosts = mkOpt attrs { } (mdDoc "An attribute set to merge with `networking.hosts`");
-  #  };
+with lib.types; let
+  cfg = config.${namespace}.hardware.networking;
+in {
+  options.${namespace}.hardware.networking.enable = mkOption {
+    type = bool;
+    default = true;
+  };
 
-  #  config = mkIf cfg.enable {
-  config = {
+  config = mkIf cfg.enable {
     sy.user.extraGroups = ["networkmanager"];
 
     networking = {
