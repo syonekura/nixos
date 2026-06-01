@@ -19,8 +19,6 @@ in {
       pkgs.insync
       pkgs.keepassxc
       pkgs.ferdium
-      pkgs.vlc
-      pkgs.fragments
       pkgs.spotify
       pkgs.calibre
       pkgs.anki

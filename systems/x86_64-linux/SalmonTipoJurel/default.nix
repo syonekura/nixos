@@ -9,6 +9,7 @@
     photo.enable = true;
     software.enable = true;
     utils.enable = true;
+    multimedia.enable = true;
     gaming.enable = true;
 
     # TODO enable options
