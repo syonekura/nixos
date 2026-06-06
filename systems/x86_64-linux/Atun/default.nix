@@ -1,5 +1,5 @@
 # Atun -> Living room gaming desktop (AMD GPU)
-{...}: {
+{config, namespace, ...}: {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.modprobeConfig.enable = true;
@@ -9,6 +9,29 @@
   sy.modules = {
     gaming.enable = true;
     multimedia.enable = true;
+  };
+
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = config.${namespace}.user.name;
+  };
+
+  snowfallorg.users.${config.${namespace}.user.name}.home.config.dconf.settings = {
+    "org/gnome/desktop/session" = {
+      idle-delay = 0;
+    };
+    "org/gnome/desktop/screensaver" = {
+      lock-enabled = false;
+    };
+    "org/gnome/desktop/notifications" = {
+      show-in-lock-screen = false;
+    };
+    "org/gnome/system/location" = {
+      enabled = true;
+    };
+    "org/gnome/desktop/datetime" = {
+      automatic-timezone = true;
+    };
   };
 
   hardware.graphics = {
