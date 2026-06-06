@@ -32,6 +32,26 @@ sudo nix --extra-experimental-features 'flakes nix-command' \
 
 ### Atun
 
+Boot the NixOS minimal ISO, then run:
+
+```bash
+sudo bash <(curl -s https://raw.githubusercontent.com/syonekura/nixos/main/install.sh)
+```
+
+The script will:
+
+1. Open `nmtui` — connect to WiFi and exit when done
+2. Mount `/dev/sda3` as swap storage and activate `/mnt/usb/swapfile`
+3. Remount `/nix/.rw-store` and `/` with `size=30G,noatime` to give the installer enough headroom
+4. Clone this repo to `/tmp/nixos`
+5. Generate `hardware-configuration.nix` for this machine and write it into the cloned repo
+6. Prompt for the `syonekura` user password and hash it to `/tmp/sy-pw`
+7. Run `disko-install` against `/dev/nvme0n1` using the `Atun` flake output
+
+> Note: replace `/dev/nvme0n1` with `/dev/sda` inside the script if Atun has a SATA SSD.
+
+**Manual install** (if the script is unavailable):
+
 ```bash
 nix shell nixpkgs#whois --command mkpasswd -m sha-512 | sudo tee /tmp/sy-pw > /dev/null && \
 sudo nix --extra-experimental-features 'flakes nix-command' \
@@ -41,8 +61,6 @@ sudo nix --extra-experimental-features 'flakes nix-command' \
     --disk one /dev/nvme0n1 \
     --extra-files /tmp/sy-pw:/etc/secrets/syonekura-password
 ```
-
-> Note: replace `/dev/nvme0n1` with `/dev/sda` if Atun has a SATA SSD.
 
 ## Maintenance
 

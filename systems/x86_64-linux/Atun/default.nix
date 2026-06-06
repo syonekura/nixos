@@ -3,6 +3,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.modprobeConfig.enable = true;
+  boot.initrd.systemd.enable = true;
   system.stateVersion = "24.05";
 
   sy.modules = {
