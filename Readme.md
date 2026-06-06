@@ -38,15 +38,14 @@ Boot the NixOS minimal ISO, then run:
 sudo bash <(curl -s https://raw.githubusercontent.com/syonekura/nixos/main/install.sh)
 ```
 
-The script will:
+Connect to WiFi first (e.g. run `nmtui`), then run the script. It will:
 
-1. Open `nmtui` — connect to WiFi and exit when done
-2. Mount `/dev/sda3` as swap storage and activate `/mnt/usb/swapfile`
-3. Remount `/nix/.rw-store` and `/` with `size=30G,noatime` to give the installer enough headroom
-4. Clone this repo to `/tmp/nixos`
-5. Generate `hardware-configuration.nix` for this machine and write it into the cloned repo
-6. Prompt for the `syonekura` user password and hash it to `/tmp/sy-pw`
-7. Run `disko-install` against `/dev/nvme0n1` using the `Atun` flake output
+1. Mount `/dev/sda3` as swap storage and activate `/mnt/usb/swapfile`
+2. Remount `/nix/.rw-store` and `/` with `size=30G,noatime` to give the installer enough headroom
+3. Clone this repo to `/tmp/nixos`
+4. Generate `hardware-configuration.nix` for this machine and write it into the cloned repo
+5. Prompt for the `syonekura` user password and hash it to `/tmp/sy-pw`
+6. Run `disko-install` against `/dev/nvme0n1` using the `Atun` flake output
 
 > Note: replace `/dev/nvme0n1` with `/dev/sda` inside the script if Atun has a SATA SSD.
 

@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# Step 1: Connect to WiFi
-echo "==> Connecting to WiFi..."
-nmtui
-
-# Step 2: Mount USB drive and activate swap
+# Step 1: Mount USB drive and activate swap
 echo "==> Mounting USB drive and activating swap..."
 mkdir -p /mnt/usb
 mount /dev/sda3 /mnt/usb
