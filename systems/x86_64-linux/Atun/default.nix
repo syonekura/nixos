@@ -4,6 +4,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.modprobeConfig.enable = true;
   boot.initrd.systemd.enable = true;
+  boot.initrd.kernelModules = ["amdgpu"];
   system.stateVersion = "24.05";
 
   sy.modules = {
