@@ -40,6 +40,9 @@
   in (lib.mkFlake {
     channels-config = {
       allowUnfree = true;
+      permittedInsecurePackages = [
+        "ventoy-1.1.12"
+      ];
     };
     inherit inputs;
     src = ./.;

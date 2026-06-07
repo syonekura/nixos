@@ -26,6 +26,9 @@ in {
       pkgs.anki
       pkgs.geekbench
       pkgs.libreoffice-fresh
+      pkgs.ventoy
     ];
+
+    
   };
 }
