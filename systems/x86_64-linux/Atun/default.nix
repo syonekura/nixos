@@ -25,7 +25,7 @@
   };
   sy.modules.de.gamescope = {
     enable = true;
-    extraGamescopeArgs = ["--adaptive-sync" "--hdr-enabled" "--mangoapp" "--rt"];
+    extraGamescopeArgs = ["--adaptive-sync" "--hdr-enabled" "--rt"];
   };
 
   systemd.settings.Manager.DefaultTimeoutStopSec = "5s";
