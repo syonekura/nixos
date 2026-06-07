@@ -102,6 +102,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       git
+      just
       qemu
       # Nix Language support
       nixd

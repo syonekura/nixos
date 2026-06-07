@@ -11,6 +11,8 @@
     multimedia.enable = true;
   };
 
+  sy.hardware.networking.remoteAccess.enable = true;
+
   services.displayManager.autoLogin = {
     enable = true;
     user = config.${namespace}.user.name;

@@ -61,6 +61,13 @@ in {
       default = ["wheel"];
       description = "Groups that the user belongs to.";
     };
+    sshAuthorizedKeys = lib.mkOption {
+      type = listOf str;
+      default = [
+        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDRkSrWQ7F0zSpOQ88dkoCzbjCFW+eCag5IuEAFrSp2j8/rZFKWO3J1Vjxy4pzct27dJaaN3eYudQnTH6CUaOhFvkTqXLqbR1p6BnjFHDIO4H8FfqdnCRjEK6/chlOKX9dlrEKILS5g9z0w3NcJxfRx7QwT0uQS6fMyHLIZ+B4xggYh4HNSQcQCh8/EdyNmhTfcqgHhePnrk4V/dvpWiYiT0Mj14y8fdsKUzDm96R2oORbclOsg/IQlsPKbPVYiU7P+0g6b1IAopgnFSldSlFSgX4W7vx2Q52ppxKVsC8IArMhrtKESCbRIvsa8QRP5MqigbNseNtiZkmTrHNiA3b4Rfyms2B+Ve3QXeFdihGiNcHWk9HMzr/g9T6ueAJfsZnPgKNa1QaQVnsnLZ9F2gKrTR2thx+/4QVteDEDxbACtSKZQaZYsAqHc3pod6BPIQAbNo3BvGa/FDyX/C/Ltr/tfofJdRy1YXQ+MBJ/aFX9R++UAT2Hb3Gxa62amUWHzRp+/F3/WFfkXi/eDdZcAvebnR40nPKOBezguK677B6za6u+WP7TCi5HIVIm8snDNicgNU9j4LoyJfg7XgKz5GBFe1vcOBDa0+2rM7kf2DGvQn0ECBltc3wiTwzaUQMU4T9zpPrB51C/evczPLdOG0fHmwmCIWYZLJST8NWDRe6UNnQ== syonekura@SalmonTipoJurel"
+      ];
+      description = "SSH public keys authorized to log in as this user.";
+    };
   };
 
   config = {
@@ -82,6 +89,7 @@ in {
       shell = pkgs.fish;
       uid = 1000;
       extraGroups = cfg.extraGroups;
+      openssh.authorizedKeys.keys = cfg.sshAuthorizedKeys;
     };
 
     # Set user profile pic

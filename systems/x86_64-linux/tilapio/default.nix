@@ -1,9 +1,16 @@
 # Tilapio is our test VM
-{...}: {
+{config, namespace, ...}: {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.modprobeConfig.enable = true;
   system.stateVersion = "24.05";
+
+  sy.hardware.networking.remoteAccess.enable = true;
+
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = config.${namespace}.user.name;
+  };
 
   virtualisation.vmVariantWithDisko = {
     # following configuration is added only when building VM with build-vm
@@ -11,14 +18,15 @@
       cores = 3;
       graphics = true;
       diskSize = 10000;
+      forwardPorts = [
+        {
+          from = "host";
+          host.port = 2222;
+          guest.port = 22;
+        }
+      ];
     };
-  };
-
-  sy.modules = {
-    photo.enable = true;
-    software.enable = true;
-    utils.enable = true;
-    gaming.enable = true;
+    users.users.syonekura.initialPassword = "test";
   };
 
   # Disko setup
