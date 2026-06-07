@@ -24,6 +24,11 @@ in {
         selected_themes = ["circle_hud"];
       };
     };
+    videoMode = mkOption {
+      type = nullOr str;
+      default = null;
+      description = "Force a display resolution during boot (e.g. '1920x1080'). Useful when the theme looks too small on high-res displays.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -42,7 +47,7 @@ in {
         "quiet"
         "rd.udev.log_level=3"
         "rd.systemd.show_status=auto"
-      ];
+      ] ++ lib.optional (cfg.videoMode != null) "video=${cfg.videoMode}";
 
       loader.timeout = 0;
     };

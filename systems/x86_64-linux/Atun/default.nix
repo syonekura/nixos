@@ -1,5 +1,5 @@
 # Atun -> Living room gaming desktop (AMD GPU)
-{config, namespace, ...}: {
+{config, namespace, pkgs, ...}: {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.modprobeConfig.enable = true;
@@ -15,7 +15,14 @@
   sy.hardware.networking.remoteAccess.enable = true;
   security.sudo.wheelNeedsPassword = false;
   sy.gnome.noOverview = true;
-  sy.hardware.plymouth.enable = true;
+  sy.hardware.plymouth = {
+    enable = true;
+    theme = "dark_planet";
+    themePackage = pkgs.adi1090x-plymouth-themes.override {
+      selected_themes = ["dark_planet"];
+    };
+    videoMode = "1920x1080";
+  };
   sy.modules.de.gamescope = {
     enable = true;
     extraGamescopeArgs = ["--adaptive-sync" "--hdr-enabled" "--mangoapp" "--rt"];
