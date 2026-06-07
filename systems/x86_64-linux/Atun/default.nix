@@ -14,6 +14,10 @@
   sy.hardware.networking.remoteAccess.enable = true;
   sy.gnome.noOverview = true;
   sy.hardware.plymouth.enable = true;
+  sy.modules.de.gamescope = {
+    enable = true;
+    extraGamescopeArgs = ["--adaptive-sync" "--hdr-enabled" "--mangoapp" "--rt"];
+  };
 
   systemd.extraConfig = "DefaultTimeoutStopSec=5s";
   systemd.network.wait-online.enable = false;
