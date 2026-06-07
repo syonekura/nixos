@@ -12,6 +12,10 @@
   };
 
   sy.hardware.networking.remoteAccess.enable = true;
+  sy.gnome.noOverview = true;
+
+  systemd.extraConfig = "DefaultTimeoutStopSec=5s";
+  systemd.network.wait-online.enable = false;
 
   services.displayManager.autoLogin = {
     enable = true;

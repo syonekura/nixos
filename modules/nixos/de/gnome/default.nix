@@ -8,10 +8,13 @@
 with lib;
 with lib.types; let
   cfg = config.${namespace}.modules.de.gnome;
-  gnomeExtensions = with pkgs.gnomeExtensions; [
+  gnomeCfg = config.${namespace}.gnome;
+  baseExtensions = with pkgs.gnomeExtensions; [
     vitals
     bing-wallpaper-changer
   ];
+  extraExtensions = lib.optional gnomeCfg.noOverview pkgs.gnomeExtensions.no-overview;
+  gnomeExtensions = baseExtensions ++ extraExtensions;
 in {
   options.${namespace} = {
     modules.de.gnome.enable = mkOption {
@@ -21,6 +24,11 @@ in {
     gnome.favoriteApps = mkOption {
       type = listOf str;
       default = [];
+    };
+    gnome.noOverview = mkOption {
+      type = bool;
+      default = false;
+      description = "Skip the GNOME overview on startup.";
     };
   };
 

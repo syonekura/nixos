@@ -1,11 +1,12 @@
 # Tilapio is our test VM
-{config, namespace, ...}: {
+{config, namespace, lib, ...}: {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.modprobeConfig.enable = true;
   system.stateVersion = "24.05";
 
   sy.hardware.networking.remoteAccess.enable = true;
+  sy.gnome.noOverview = true;
 
   services.displayManager.autoLogin = {
     enable = true;
@@ -26,7 +27,10 @@
         }
       ];
     };
-    users.users.syonekura.initialPassword = "test";
+    users.users.syonekura = {
+      initialPassword = "test";
+      hashedPasswordFile = lib.mkForce null;
+    };
   };
 
   # Disko setup
