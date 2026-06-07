@@ -19,7 +19,7 @@
     extraGamescopeArgs = ["--adaptive-sync" "--hdr-enabled" "--mangoapp" "--rt"];
   };
 
-  systemd.extraConfig = "DefaultTimeoutStopSec=5s";
+  systemd.settings.Manager.DefaultTimeoutStopSec = "5s";
   systemd.network.wait-online.enable = false;
 
   services.displayManager.autoLogin = {

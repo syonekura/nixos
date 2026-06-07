@@ -20,7 +20,7 @@ update:
 
 # Deploy to a remote NixOS host over SSH: just deploy Atun
 deploy host:
-    nixos-rebuild switch --flake .#{{host}} --target-host {{host}}.local --use-remote-sudo
+    nixos-rebuild switch --flake .#{{host}} --target-host {{host}}.local --sudo
 
 # SSH into the local test VM (run 'just run' first)
 ssh-vm:
