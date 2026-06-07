@@ -22,6 +22,7 @@
       selected_themes = ["dark_planet"];
     };
     videoMode = "1920x1080";
+    deviceScale = 2;
   };
   sy.modules.de.gamescope = {
     enable = true;

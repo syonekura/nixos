@@ -29,6 +29,11 @@ in {
       default = null;
       description = "Force a display resolution during boot (e.g. '1920x1080'). Useful when the theme looks too small on high-res displays.";
     };
+    deviceScale = mkOption {
+      type = nullOr int;
+      default = null;
+      description = "Scale factor for the Plymouth theme rendering (e.g. 2 for HiDPI or large TVs).";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -39,6 +44,7 @@ in {
         enable = true;
         theme = cfg.theme;
         themePackages = [cfg.themePackage];
+        extraConfig = lib.optionalString (cfg.deviceScale != null) "DeviceScale=${toString cfg.deviceScale}";
       };
 
       consoleLogLevel = 3;
