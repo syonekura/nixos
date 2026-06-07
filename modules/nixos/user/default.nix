@@ -113,7 +113,6 @@ in {
 
         if ! [ -f "$config_file" ]; then
           echo "[User]
-          Session=gnome
           SystemAccount=false
           Icon=$icon_file" > "$config_file"
         else

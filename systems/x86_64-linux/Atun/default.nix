@@ -12,6 +12,7 @@
   };
 
   sy.hardware.networking.remoteAccess.enable = true;
+  security.sudo.wheelNeedsPassword = false;
   sy.gnome.noOverview = true;
   sy.hardware.plymouth.enable = true;
   sy.modules.de.gamescope = {
