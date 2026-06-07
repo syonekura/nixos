@@ -23,6 +23,7 @@
 
   systemd.settings.Manager.DefaultTimeoutStopSec = "5s";
   systemd.network.wait-online.enable = false;
+  systemd.user.services.xdg-document-portal.serviceConfig.TimeoutStopSec = "1";
 
   services.displayManager.autoLogin = {
     enable = true;
