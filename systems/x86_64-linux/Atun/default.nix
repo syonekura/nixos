@@ -29,6 +29,18 @@
     extraGamescopeArgs = ["--adaptive-sync" "--hdr-enabled" "--rt"];
   };
 
+  systemd.user.services.set-default-volume = {
+    description = "Set default audio sink volume to 100%";
+    wantedBy = ["default.target"];
+    after = ["wireplumber.service"];
+    requires = ["wireplumber.service"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 1.0";
+      RemainAfterExit = true;
+    };
+  };
+
   systemd.settings.Manager.DefaultTimeoutStopSec = "5s";
   systemd.network.wait-online.enable = false;
   systemd.user.services.xdg-document-portal.serviceConfig.TimeoutStopSec = "1";
