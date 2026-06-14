@@ -17,6 +17,7 @@ in {
     environment.systemPackages = [
       pkgs.vlc
       pkgs.fragments
+      pkgs.kodi
     ];
   };
 }

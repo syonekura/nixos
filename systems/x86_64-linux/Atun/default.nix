@@ -41,6 +41,42 @@
     };
   };
 
+  systemd.tmpfiles.rules = [
+    "d /home/${config.${namespace}.user.name}/Videos 0755 ${config.${namespace}.user.name} users -"
+  ];
+
+  snowfallorg.users.${config.${namespace}.user.name}.home.config = {
+    home.file.".kodi/userdata/sources.xml".text = ''
+      <sources>
+        <video>
+          <default pathversion="1"></default>
+          <source>
+            <name>Videos</name>
+            <path pathversion="1">/home/${config.${namespace}.user.name}/Videos/</path>
+            <allowsharing>true</allowsharing>
+          </source>
+        </video>
+      </sources>
+    '';
+    dconf.settings = {
+      "org/gnome/desktop/session" = {
+        idle-delay = 0;
+      };
+      "org/gnome/desktop/screensaver" = {
+        lock-enabled = false;
+      };
+      "org/gnome/desktop/notifications" = {
+        show-in-lock-screen = false;
+      };
+      "org/gnome/system/location" = {
+        enabled = true;
+      };
+      "org/gnome/desktop/datetime" = {
+        automatic-timezone = true;
+      };
+    };
+  };
+
   systemd.settings.Manager.DefaultTimeoutStopSec = "5s";
   systemd.network.wait-online.enable = false;
   systemd.user.services.xdg-document-portal.serviceConfig.TimeoutStopSec = "1";
@@ -48,24 +84,6 @@
   services.displayManager.autoLogin = {
     enable = true;
     user = config.${namespace}.user.name;
-  };
-
-  snowfallorg.users.${config.${namespace}.user.name}.home.config.dconf.settings = {
-    "org/gnome/desktop/session" = {
-      idle-delay = 0;
-    };
-    "org/gnome/desktop/screensaver" = {
-      lock-enabled = false;
-    };
-    "org/gnome/desktop/notifications" = {
-      show-in-lock-screen = false;
-    };
-    "org/gnome/system/location" = {
-      enabled = true;
-    };
-    "org/gnome/desktop/datetime" = {
-      automatic-timezone = true;
-    };
   };
 
   hardware.graphics = {
