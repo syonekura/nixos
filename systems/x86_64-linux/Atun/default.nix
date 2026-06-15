@@ -1,5 +1,50 @@
 # Atun -> Living room gaming desktop (AMD GPU)
-{config, namespace, pkgs, ...}: {
+{config, namespace, pkgs, ...}: let
+  pythonWithVdf = pkgs.python3.withPackages (ps: [ps.vdf]);
+  addKodiScript = pkgs.writeText "add-kodi-to-steam.py" ''
+    import sys, os, vdf
+
+    shortcuts_path = sys.argv[1]
+    kodi_exe = "/run/current-system/sw/bin/kodi"
+    kodi_name = "Kodi"
+
+    if os.path.exists(shortcuts_path):
+        with open(shortcuts_path, "rb") as f:
+            data = vdf.binary_loads(f.read())
+    else:
+        os.makedirs(os.path.dirname(shortcuts_path), exist_ok=True)
+        data = {"shortcuts": {}}
+
+    shortcuts = data.get("shortcuts", {})
+
+    for entry in shortcuts.values():
+        if entry.get("Exe") == kodi_exe or entry.get("AppName") == kodi_name:
+            sys.exit(0)
+
+    next_id = str(len(shortcuts))
+    shortcuts[next_id] = {
+        "AppName": kodi_name,
+        "Exe": kodi_exe,
+        "StartDir": "/run/current-system/sw/bin/",
+        "icon": "",
+        "ShortcutPath": "",
+        "LaunchOptions": "",
+        "IsHidden": 0,
+        "AllowDesktopConfig": 1,
+        "AllowOverlay": 1,
+        "OpenVR": 0,
+        "Devkit": 0,
+        "DevkitGameID": "",
+        "DevkitOverrideAppID": 0,
+        "LastPlayTime": 0,
+        "FlatpakAppID": "",
+        "tags": {},
+    }
+
+    with open(shortcuts_path, "wb") as f:
+        f.write(vdf.binary_dumps(data))
+  '';
+in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.modprobeConfig.enable = true;
@@ -23,6 +68,15 @@
     };
     videoMode = "1920x1080";
     deviceScale = 2;
+    transitionDuration = 5;
+  };
+
+  # Keep Plymouth visible until gamescope has rendered its first frame.
+  # By default plymouth-quit fires the moment display-manager *starts*,
+  # leaving a blank gap while Steam Big Picture loads.
+  systemd.services."plymouth-quit" = {
+    after = ["display-manager.service"];
+    requires = ["display-manager.service"];
   };
   sy.modules.de.gamescope = {
     enable = true;
@@ -74,6 +128,19 @@
       "org/gnome/desktop/datetime" = {
         automatic-timezone = true;
       };
+    };
+    home.activation.addKodiToSteam = {
+      after = ["writeBoundary"];
+      before = [];
+      data = ''
+        STEAM_USERDATA="$HOME/.local/share/Steam/userdata"
+        if [ -d "$STEAM_USERDATA" ]; then
+          for USER_DIR in "$STEAM_USERDATA"/*/; do
+            [ -d "$USER_DIR" ] || continue
+            ${pythonWithVdf}/bin/python3 ${addKodiScript} "$USER_DIR/config/shortcuts.vdf"
+          done
+        fi
+      '';
     };
   };
 

@@ -17,7 +17,7 @@ in {
     environment.systemPackages = [
       pkgs.vlc
       pkgs.fragments
-      pkgs.kodi
+      (pkgs.kodi.withPackages (p: [p.joystick]))
     ];
   };
 }

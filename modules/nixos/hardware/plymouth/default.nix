@@ -34,6 +34,11 @@ in {
       default = null;
       description = "Scale factor for the Plymouth theme rendering (e.g. 2 for HiDPI or large TVs).";
     };
+    transitionDuration = mkOption {
+      type = nullOr int;
+      default = null;
+      description = "Fade-out duration in seconds when Plymouth quits. Useful to bridge the gap before a session compositor renders its first frame.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -44,7 +49,10 @@ in {
         enable = true;
         theme = cfg.theme;
         themePackages = [cfg.themePackage];
-        extraConfig = lib.optionalString (cfg.deviceScale != null) "DeviceScale=${toString cfg.deviceScale}";
+        extraConfig = lib.concatStringsSep "\n" (
+          lib.optional (cfg.deviceScale != null) "DeviceScale=${toString cfg.deviceScale}"
+          ++ lib.optional (cfg.transitionDuration != null) "TransitionDuration=${toString cfg.transitionDuration}"
+        );
       };
 
       consoleLogLevel = 3;
