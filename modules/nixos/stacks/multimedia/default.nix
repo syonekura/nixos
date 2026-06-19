@@ -16,7 +16,7 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
       pkgs.vlc
-      pkgs.fragments
+      pkgs.qbittorrent
       (pkgs.kodi.withPackages (p: [p.joystick]))
     ];
   };

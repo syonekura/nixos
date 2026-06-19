@@ -8,4 +8,11 @@
   # https://mynixos.com/home-manager/option/home.stateVersion
 
   home.stateVersion = "24.05";
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop";
+    };
+  };
 }
