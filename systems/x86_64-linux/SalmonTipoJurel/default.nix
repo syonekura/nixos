@@ -10,6 +10,7 @@
     software.enable = true;
     utils.enable = true;
     multimedia.enable = true;
+    downloads.enable = true;
     gaming.enable = true;
 
     # TODO enable options

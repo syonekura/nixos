@@ -153,6 +153,11 @@ in {
     user = config.${namespace}.user.name;
   };
 
+  # Some Xbox controller firmware versions ship a malformed HID descriptor
+  # ("unbalanced collection"), causing hid-generic to reject them with -EINVAL.
+  # xpadneo handles Xbox BT controllers specifically and tolerates these quirks.
+  hardware.xpadneo.enable = true;
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # required for Steam/Proton 32-bit games
