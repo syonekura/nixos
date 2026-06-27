@@ -21,7 +21,11 @@ in {
           size = 14;
         };
         window.opacity = 0.75;
-        terminal.shell.program = "zellij";
+        window.startup_mode = "Maximized";
+        terminal.shell = {
+          program = "zellij";
+          args = ["attach" "--create" "main"];
+        };
       };
     };
   };

@@ -4,6 +4,8 @@
   swapMB = ramMB + (ramMB / 20); # 105%
 in {
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
+  boot.loader.timeout = 0;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.modprobeConfig.enable = true;
   system.stateVersion = "24.05";
@@ -63,6 +65,8 @@ in {
   };
 
   boot.swraid.mdadmConf = "MAILADDR root";
+
+  boot.blacklistedKernelModules = ["serial8250"];
 
   # ── PHASE 1 (swapfile, current) ─────────────────────────────────────────────
   # On next reinstall: delete this block and uncomment PHASE 2 below.
