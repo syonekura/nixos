@@ -1,5 +1,8 @@
 # SalmonTipoJurel -> Dev Laptop
-{...}: {
+{...}: let
+  ramMB = 31788;
+  swapMB = ramMB + (ramMB / 20); # 105%
+in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.modprobeConfig.enable = true;
@@ -60,6 +63,29 @@
   };
 
   boot.swraid.mdadmConf = "MAILADDR root";
+
+  # ── PHASE 1 (swapfile, current) ─────────────────────────────────────────────
+  # On next reinstall: delete this block and uncomment PHASE 2 below.
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 33000; # frozen — changing this recreates the swapfile and invalidates resume_offset
+  }];
+  boot.resumeDevice = "/dev/disk/by-uuid/91f30a25-6e48-4e8b-bc26-c4e74668d7b9";
+  boot.kernelParams = ["resume_offset=161798144"];
+  # ────────────────────────────────────────────────────────────────────────────
+
+  # ── PHASE 2 (swap partition, uncomment on next reinstall) ───────────────────
+  # boot.resumeDevice = "/dev/disk/by-label/swap";
+  # ────────────────────────────────────────────────────────────────────────────
+
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=1h
+  '';
+
+  services.logind.extraConfig = ''
+    HandleLidSwitch=suspend-then-hibernate
+    HandleLidSwitchExternalPower=suspend-then-hibernate
+  '';
 
   imports = [
     # Include the results of the hardware scan.
@@ -132,6 +158,8 @@
           type = "gpt";
           partitions = {
             primary = {
+              # PHASE 2: leave room for the swap partition by replacing 100% with a fixed size
+              # size = "-${toString swapMB}M";
               size = "100%";
               content = {
                 type = "filesystem";
@@ -139,6 +167,15 @@
                 mountpoint = "/";
               };
             };
+            # ── PHASE 2 (uncomment on next reinstall, delete PHASE 1 block above) ──
+            # swap = {
+            #   size = "${toString swapMB}M";
+            #   content = {
+            #     type = "swap";
+            #     extraArgs = ["-L" "swap"];
+            #   };
+            # };
+            # ────────────────────────────────────────────────────────────────────────
           };
         };
       };
