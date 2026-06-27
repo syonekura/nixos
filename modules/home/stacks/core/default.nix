@@ -1,7 +1,6 @@
 {namespace, ...}: {
   config.${namespace} = {
     modules = {
-      kitty.enable = true;
       alacritty.enable = true;
       zellij.enable = true;
       starship.enable = true;
