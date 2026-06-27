@@ -1,6 +1,16 @@
-# Nixos Setup
+# NixOS Setup
 
-Configuration for my Nixos Hosts.
+Configuration for my NixOS hosts: **SalmonTipoJurel** (dev laptop), **Atun** (living room kiosk).
+
+## Pending tasks on next reinstall
+
+### SalmonTipoJurel — migrate hibernate to swap partition (Phase 2)
+
+Hibernate currently uses a swapfile with a hardcoded `resume_offset`. On the next reinstall, switch to a dedicated swap partition which is offset-free and reinstall-safe. In `systems/x86_64-linux/SalmonTipoJurel/default.nix`:
+
+1. Delete the **PHASE 1** block (swapDevices, boot.resumeDevice, boot.kernelParams)
+2. Uncomment `boot.resumeDevice` from the **PHASE 2** block
+3. In the disko section, shrink `primary` size to `-${toString swapMB}M` (currently `-33377M`) and uncomment the `swap` partition
 
 ## Install steps
 
@@ -19,6 +29,8 @@ sudo mount -o remount,size=30G,noatime /
 
 ### SalmonTipoJurel
 
+Dual NVMe RAID 0. Connect to WiFi first (`nmtui`), then:
+
 ```bash
 nix shell nixpkgs#whois --command mkpasswd -m sha-512 | sudo tee /tmp/sy-pw > /dev/null && \
 sudo nix --extra-experimental-features 'flakes nix-command' \
@@ -32,13 +44,13 @@ sudo nix --extra-experimental-features 'flakes nix-command' \
 
 ### Atun
 
-Boot the NixOS minimal ISO, then run:
+Boot the NixOS minimal ISO, connect to WiFi (`nmtui`), then run:
 
 ```bash
 sudo bash <(curl -s https://raw.githubusercontent.com/syonekura/nixos/main/install.sh)
 ```
 
-Connect to WiFi first (e.g. run `nmtui`), then run the script. It will:
+The script will:
 
 1. Mount `/dev/sda3` as swap storage and activate `/mnt/usb/swapfile`
 2. Remount `/nix/.rw-store` and `/` with `size=30G,noatime` to give the installer enough headroom
@@ -63,47 +75,57 @@ sudo nix --extra-experimental-features 'flakes nix-command' \
 
 ## Maintenance
 
-Perform changes on this repo and then execute
+Apply config changes:
 
 ```bash
 sudo nixos-rebuild switch --flake .
 ```
 
-Upgrade dependencies (flake.lock) with
+Deploy to a remote host (e.g. Atun):
 
 ```bash
-nix flake update
+just deploy Atun
 ```
 
-Clean up unused dependencies and free some space with
+Update flake inputs:
+
+```bash
+just update
+```
+
+Garbage collect old generations:
 
 ```bash
 sudo nix-collect-garbage -d
 ```
 
-Clean up boot entries with switch to boot + garbage collect
+Clean up boot entries:
 
 ```bash
 sudo /run/current-system/bin/switch-to-configuration boot
 sudo nix-collect-garbage -d
 ```
 
-### Tweaking Gnome settings
-
-Open a terminal and type
+### Tweaking GNOME settings
 
 ```bash
 dconf watch /
 ```
 
-then perform any changes on gnome settings manually, dconf watch will print out the key/value pair for each change. Those can then be added to the gnome nix file
+Make changes in GNOME settings — dconf watch prints the key/value pairs which can then be added to `homes/x86_64-linux/syonekura/default.nix`.
+
+### Testing with the local VM
+
+```bash
+just run   # builds tilapio VM and launches it
+just ssh-vm  # SSH into the running VM
+```
 
 ## Useful docs / links
-
-The setup is highly influenced by this guide on setting up [NixOS to run on VMs](https://nix.dev/tutorials/nixos/nixos-configuration-on-vm.html), with a setup using [Just](https://just.systems/). Other handy docs are listed below:
 
 - [Snowfall Lib](https://snowfall.org/guides/lib/quickstart/)
 - [Jake Hamilton's Config](https://github.com/jakehamilton/config/)
 - [NixOS package search](https://search.nixos.org/packages)
 - [Home Manager Option search](https://home-manager-options.extranix.com/)
 - [Install NixOS with disko](https://nixos.asia/en/nixos-install-disko)
+- [NixOS on VMs guide](https://nix.dev/tutorials/nixos/nixos-configuration-on-vm.html)
