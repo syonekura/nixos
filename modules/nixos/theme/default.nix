@@ -4,6 +4,7 @@
       flavor = "mocha";
       accent = "blue";
       enable = true;
+      autoEnable = true;
     };
   };
 }

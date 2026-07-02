@@ -40,7 +40,6 @@ in {
         gdm = {
           enable = true;
           autoSuspend = false;
-          wayland = true;
         };
       };
     };
