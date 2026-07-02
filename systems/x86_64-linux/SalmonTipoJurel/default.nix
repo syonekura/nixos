@@ -75,7 +75,7 @@ in {
     size = 33000; # frozen — changing this recreates the swapfile and invalidates resume_offset
   }];
   boot.resumeDevice = "/dev/disk/by-uuid/91f30a25-6e48-4e8b-bc26-c4e74668d7b9";
-  boot.kernelParams = ["resume_offset=161798144"];
+  boot.kernelParams = ["resume_offset=161798144" "8250.nr_uarts=0"];
   # ────────────────────────────────────────────────────────────────────────────
 
   # ── PHASE 2 (swap partition, uncomment on next reinstall) ───────────────────
