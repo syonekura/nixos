@@ -93,6 +93,16 @@ in {
             (mkTuple ["xkb" "us"])
           ];
         };
+        "org/gnome/desktop/wm/keybindings" = {
+          switch-to-workspace-up = ["<Control><Alt>Up"];
+          switch-to-workspace-down = ["<Control><Alt>Down"];
+          switch-to-workspace-left = ["<Control><Alt>Left"];
+          switch-to-workspace-right = ["<Control><Alt>Right"];
+          move-to-workspace-up = ["<Control><Shift><Alt>Up"];
+          move-to-workspace-down = ["<Control><Shift><Alt>Down"];
+          move-to-workspace-left = ["<Control><Shift><Alt>Left"];
+          move-to-workspace-right = ["<Control><Shift><Alt>Right"];
+        };
       };
     };
   };

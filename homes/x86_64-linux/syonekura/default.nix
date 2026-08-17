@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   # Most users should never change this value after the initial install, for any reason, even if you've upgraded
   # your system to a new NixOS release. This value does not affect the Nixpkgs version your packages and OS are
   # pulled from, so changing it will not upgrade your system. The state version indicates which default settings
@@ -8,6 +8,10 @@
   # https://mynixos.com/home-manager/option/home.stateVersion
 
   home.stateVersion = "24.05";
+
+  home.packages = with pkgs; [
+    vlc
+  ];
 
   xdg.mimeApps = {
     enable = true;
