@@ -17,6 +17,18 @@
     enable = true;
     defaultApplications = {
       "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop";
+
+      # VLC as default video player
+      "video/mp4" = "vlc.desktop";
+      "video/x-matroska" = "vlc.desktop";
+      "video/webm" = "vlc.desktop";
+      "video/quicktime" = "vlc.desktop";
+      "video/x-msvideo" = "vlc.desktop";
+      "video/x-ms-wmv" = "vlc.desktop";
+      "video/mpeg" = "vlc.desktop";
+      "video/x-flv" = "vlc.desktop";
+      "video/3gpp" = "vlc.desktop";
+      "video/ogg" = "vlc.desktop";
     };
   };
 }
