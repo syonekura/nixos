@@ -18,7 +18,7 @@ in {
 
     environment.systemPackages = [
       pkgs.obsidian
-      pkgs.insync
+      # pkgs.insync # 3.9.11 fails in auto-patchelf (QtWebEngineProcess.debug); re-enable once fixed upstream
       pkgs.keepassxc
       pkgs.ferdium
       pkgs.spotify
