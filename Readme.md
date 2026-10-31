@@ -129,3 +129,26 @@ just ssh-vm  # SSH into the running VM
 - [Home Manager Option search](https://home-manager-options.extranix.com/)
 - [Install NixOS with disko](https://nixos.asia/en/nixos-install-disko)
 - [NixOS on VMs guide](https://nix.dev/tutorials/nixos/nixos-configuration-on-vm.html)
+
+## Troubleshooting
+
+### SalmonTipoJurel — Bluetooth headphones stuck on handsfree (HFP) / audio won't play
+
+Symptom: the Bose QC Ultra connects but only offers the low-quality "Headset Head Unit" profile, or switching to A2DP leaves audio (e.g. YouTube) stalled. `journalctl --user -u wireplumber` shows `Acquire .../fd0 returned error: org.bluez.Error.NotAuthorized` / `Failure in Bluetooth audio transport`.
+
+**The fix is reconnecting the headphones:**
+
+```bash
+bluetoothctl disconnect E4:58:BC:5C:C7:B1
+bluetoothctl connect E4:58:BC:5C:C7:B1
+```
+
+If it still comes up in HFP, force the A2DP profile first (the device id and profile index change, so look them up):
+
+```bash
+wpctl status                                  # find the headphones' id under Devices (e.g. 70)
+pw-cli enum-params <id> EnumProfile           # find the index of "a2dp-sink" (AAC)
+pw-cli set-param <id> Profile '{ index: <index> }'
+```
+
+If it keeps failing, check whether the headphones are also connected to another device (phone multipoint), and disconnect them there.
