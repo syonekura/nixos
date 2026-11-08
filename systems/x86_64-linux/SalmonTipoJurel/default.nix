@@ -28,6 +28,9 @@ in {
     enable = true;
   };
 
+  # Xbox Wireless Controller over BT: hid-generic reconnect-loops with newer firmware.
+  hardware.xpadneo.enable = true;
+
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
