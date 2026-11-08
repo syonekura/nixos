@@ -23,9 +23,9 @@ in {
       pkgs.ferdium
       pkgs.spotify
       pkgs.calibre
-      pkgs.anki
+      pkgs.anki-bin # source build of anki 26.09.4 fails (uv can't fetch hatchling deps offline); switch back to pkgs.anki once fixed
       pkgs.geekbench
-      pkgs.libreoffice-fresh
+      pkgs.libreoffice
       pkgs.ventoy
     ];
 
